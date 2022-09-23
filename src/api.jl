@@ -12,5 +12,5 @@ end
 function quantize(
     ::Type{T}, cs::AbstractArray{<:Colorant}, alg::AbstractColorQuantizer
 ) where {T}
-    return convert.(T, alg(cs))
+    return convert.(T, alg(cs)[:])
 end
