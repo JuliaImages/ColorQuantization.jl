@@ -2,6 +2,7 @@ module ColorQuantization
 
 using Colors
 using ImageBase: channelview, colorview, floattype, restrict
+using Random: AbstractRNG, GLOBAL_RNG
 using LazyModules: @lazy
 #! format: off
 @lazy import Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
