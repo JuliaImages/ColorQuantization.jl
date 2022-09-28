@@ -14,7 +14,13 @@ struct UniformQuantization <: AbstractColorQuantizer
     end
 end
 
-(alg::UniformQuantization)(cs::AbstractArray{<:Colorant}) = alg(convert.(RGB{Float32}, cs))
-function (alg::UniformQuantization)(cs::AbstractArray{T}) where {T<:RGB{<:AbstractFloat}}
-    return colorview(T, unique(round.(channelview(cs[:]) * alg.n); dims=2) / alg.n)
+const UQ_COLORSPACE = RGB{Float32}
+
+(alg::UniformQuantization)(cs) = alg(convert.(UQ_COLORSPACE, cs))
+function (alg::UniformQuantization)(cs::AbstractArray{UQ_COLORSPACE})
+    return unique(map(c -> _uniform_quantization(c, alg.n), cs))
+end
+
+function _uniform_quantization(c::UQ_COLORSPACE, n)
+  return mapc(x -> round(x * n) / n , c)
 end
