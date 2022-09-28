@@ -14,19 +14,21 @@ struct UniformQuantization <: AbstractColorQuantizer
     end
 end
 
-const UQ_COLORSPACE = RGB{Float32}
+const UQ_FLOATTYPE = Float32
+const UQ_COLORTYPE = RGB{UQ_FLOATTYPE}
+const UQ_HALF = UQ_FLOATTYPE(0.5)
 
-(alg::UniformQuantization)(cs) = alg(convert.(UQ_COLORSPACE, cs))
-function (alg::UniformQuantization)(cs::AbstractArray{UQ_COLORSPACE})
-    n = Float32(alg.n)
+(alg::UniformQuantization)(cs) = alg(convert.(UQ_COLORTYPE, cs))
+function (alg::UniformQuantization)(cs::AbstractArray{UQ_COLORTYPE})
+    n = UQ_FLOATTYPE(alg.n)
     return unique(map(c -> _uniform_quantization(c, n), cs))
 end
 
-function _uniform_quantization(c::UQ_COLORSPACE, n)
+function _uniform_quantization(c::UQ_COLORTYPE, n::UQ_FLOATTYPE)
     return mapc(x -> _uniform_quantization(x, n), c)
 end
-function _uniform_quantization(x::Float32, n::Float32)
+function _uniform_quantization(x::UQ_FLOATTYPE, n::UQ_FLOATTYPE)
     x ≤ 0 && return 1 / (2 * n)
     x ≥ 1 && return (2 * n - 1) / (2 * n)
-    return (round(x * n - 0.5f0) + 0.5f0) / n
+    return (round(x * n - UQ_HALF) + UQ_HALF) / n
 end
