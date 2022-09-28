@@ -46,8 +46,8 @@ algs_deterministic = Dict(
         # Centers of cubes at: 0.125, 0.375, 0.625, 0.875
 
         # Remember that `round` defaults to `RoundNearest`,
-        # which rounds to the nearest even integer.
-        # So here, `c2.g` get's rounded up instead of down
+        # which rounds to the nearest _even_ integer.
+        # So here, `c2.g = 0.5` gets rounded up to 0.625 instead of down.
         @test cs2[1] == RGB(0.125, 0.375, 0.875)
         @test cs2[2] == RGB(0.375, 0.625, 0.625)
         @test cs2[3] == RGB(0.125, 0.625, 0.625)
