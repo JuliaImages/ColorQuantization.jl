@@ -1,7 +1,8 @@
 module ColorQuantization
 
 using Colors
-using ImageBase: channelview, colorview, floattype, restrict
+using ImageBase: FixedPoint, floattype, FixedPointNumbers.rawtype
+using ImageBase: channelview, colorview, restrict
 using Random: AbstractRNG, GLOBAL_RNG
 using LazyModules: @lazy
 #! format: off
