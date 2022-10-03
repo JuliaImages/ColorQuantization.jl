@@ -12,7 +12,7 @@ struct UniformQuantization{N} <: AbstractColorQuantizer
     end
 end
 
-@inline (alg::UniformQuantization)(cs::AbstractArray) = alg(convert.(RGB, cs))
+@inline (alg::UniformQuantization)(cs::AbstractArray) = alg(convert.(RGB{Float32}, cs))
 @inline (alg::UniformQuantization)(cs::AbstractArray{<:RGB}) = unique(alg.(cs))
 
 @inline (alg::UniformQuantization)(c::Colorant) = alg(convert(RGB, c))
