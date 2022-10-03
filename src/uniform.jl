@@ -16,7 +16,7 @@ end
 @inline (alg::UniformQuantization)(cs::AbstractArray{<:RGB}) = unique(alg.(cs))
 
 @inline (alg::UniformQuantization)(c::Colorant) = alg(convert(RGB, c))
-@inline (alg::UniformQuantization)(c::RGB{T}) where {T} = mapc(alg, c)
+@inline (alg::UniformQuantization)(c::RGB) = mapc(alg, c)
 
 @inline (alg::UniformQuantization)(x::Real) = _uq_round(alg, x)
 @inline (alg::UniformQuantization)(x::FixedPoint) = _uq_lookup(alg, x)
@@ -34,7 +34,6 @@ end
 @inline function _uq_lookup(alg::UniformQuantization{N}, x::T) where {N,T<:FixedPoint}
     @inbounds _uq_lookup_table(alg, T)[x.i + 1]
 end
-
 # the lookup table is generated at compile time
 @generated function _uq_lookup_table(
     ::UniformQuantization{N}, ::Type{T}
