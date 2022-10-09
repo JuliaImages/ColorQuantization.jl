@@ -47,5 +47,5 @@ end
         x = reinterpret(T, raw_x)
         table[raw_x + 1] = _uq_round(UniformQuantization(N), x)
     end
-    return table
+    return Tuple(table)
 end
