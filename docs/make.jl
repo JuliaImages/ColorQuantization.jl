@@ -21,11 +21,11 @@ DocMeta.setdocmeta!(
 makedocs(;
     modules=[ColorQuantization],
     authors="Adrian Hill <adrian.hill@mailbox.org>",
-    repo="https://github.com/adrhill/ColorQuantization.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/JuliaImages/ColorQuantization.jl/blob/{commit}{path}#{line}",
     sitename="ColorQuantization.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://adrhill.github.io/ColorQuantization.jl",
+        canonical="https://juliaimages.github.io/ColorQuantization.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -36,4 +36,4 @@ makedocs(;
     ],
 )
 
-deploydocs(; repo="github.com/adrhill/ColorQuantization.jl", devbranch="main")
+deploydocs(; repo="github.com/JuliaImages/ColorQuantization.jl", devbranch="main")
