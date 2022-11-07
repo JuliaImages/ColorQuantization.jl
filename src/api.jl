@@ -1,7 +1,7 @@
 """
-    quantize([T,] cs, alg)
+    quantize([T,] im, alg)
 
-Apply color quantization algorithm `alg` to an iterable collection of Colorants,
+Apply color quantization algorithm `alg` to an iterable collection of Colorants `im`,
 e.g. an image or any `AbstractArray`.
 The return type `T` can be specified and defaults to the element type of `cs`.
 """
