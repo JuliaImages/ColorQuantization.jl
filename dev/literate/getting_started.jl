@@ -38,6 +38,10 @@ quantize(img, UniformQuantization(6))
 #
 quantize(img, UniformQuantization(8))
 
+# Using `UniformQuantization`, every single pixel in the input image is rounded
+# and appears in the generated color palette, which explains the blues and purples
+# from the shadows of the peppers.
+
 # # Output color type
 # It is also possible to specify the output color type:
 colors = quantize(HSV, img, UniformQuantization(4))
