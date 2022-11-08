@@ -25,4 +25,10 @@ quantize(img, KMeansQuantization(256))  # quantize to 256 colors
 quantize(img, UniformQuantization(8))   # quantize to an 8x8x8 grid
 ```
 
+The generated color schemes can be [viewed in the documentation][docs-getting-started].
+
+## Related packages
+[ColorSchemeTools.jl](https://github.com/JuliaGraphics/ColorSchemeTools.jl) provides `extract` to generate weighted colorschemes from images using K-means clustering.
+
+[docs-getting-started]: https://juliaimages.org/ColorQuantization.jl/dev/generated/getting_started/
 [docs-methods]: https://juliaimages.org/ColorQuantization.jl/dev/api/#methods_api
