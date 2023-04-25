@@ -1,19 +1,16 @@
 
 struct OctreeQuantization <: AbstractColorQuantizer
     numcolors::Int
-    function OctreeQuantization(
-        numcolors::Int=256;
-        kwargs...
-    )
+    function OctreeQuantization(numcolors::Int=256; kwargs...)
         return new(numcolors)
     end
 end
 
 function (alg::OctreeQuantization)(img::AbstractArray)
-    return octreequantisation!(img; numcolors=alg.numcolors)
+    return octreequantization!(img; numcolors=alg.numcolors)
 end
 
-function octreequantisation!(img; numcolors = 256, precheck::Bool = false)
+function octreequantization!(img; numcolors = 256, precheck::Bool = false)
     # ensure the img is in RGB colorspace
     if (eltype(img) != RGB{N0f8})
         error("Octree Algorithm requires img to be in RGB colorspace")
@@ -100,9 +97,9 @@ function octreequantisation!(img; numcolors = 256, precheck::Bool = false)
     return colors
 end
 
-function octreequantisation(img; kwargs...)
+function octreequantization(img; kwargs...)
     img_copy = deepcopy(img)
-    palette = octreequantisation!(img_copy; kwargs...)
+    palette = octreequantization!(img_copy; kwargs...)
     return img_copy, palette
 end
 
