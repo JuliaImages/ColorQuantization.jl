@@ -1,4 +1,8 @@
 # ColorQuantization.jl
+## Version `v0.1.1`
+- ![Maintenance][badge-maintenance] Update dependencies
+- ![Maintenance][badge-maintenance] Add Aqua.jl quality assurance test ([#12][pr-12])
+
 ## Version `v0.1.0`
 Initial release:
 - ![Feature][badge-feature] Add `KMeansQuantization` ([#1][pr-1])
@@ -16,6 +20,7 @@ Initial release:
 ![Documentation][badge-docs]
 -->
 
+[pr-12]: https://github.com/JuliaImages/ColorQuantization.jl/pull/12
 [pr-1]: https://github.com/JuliaImages/ColorQuantization.jl/pull/1
 
 [badge-breaking]: https://img.shields.io/badge/BREAKING-red.svg
