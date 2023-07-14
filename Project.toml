@@ -11,7 +11,7 @@ LazyModules = "8cdb02fc-e678-4876-92c5-9defec4f444e"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
-Clustering = "0.14.3"
+Clustering = "0.14.3, 0.15"
 Colors = "0.12"
 ImageBase = "0.1"
 LazyModules = "0.3"
