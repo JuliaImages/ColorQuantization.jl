@@ -1,4 +1,7 @@
 # ColorQuantization.jl
+## Version `v0.1.2`
+- ![Maintenance][badge-maintenance] Make Clustering non-lazy dependency, fix type inference ([#13][pr-13])
+
 ## Version `v0.1.1`
 - ![Maintenance][badge-maintenance] Update dependencies
 - ![Maintenance][badge-maintenance] Add Aqua.jl quality assurance test ([#12][pr-12])
@@ -19,7 +22,7 @@ Initial release:
 ![Maintenance][badge-maintenance]
 ![Documentation][badge-docs]
 -->
-
+[pr-13]: https://github.com/JuliaImages/ColorQuantization.jl/pull/13
 [pr-12]: https://github.com/JuliaImages/ColorQuantization.jl/pull/12
 [pr-1]: https://github.com/JuliaImages/ColorQuantization.jl/pull/1
 

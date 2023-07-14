@@ -1,7 +1,7 @@
 name = "ColorQuantization"
 uuid = "652893fb-f6a0-4a00-a44a-7fb8fac69e01"
 authors = ["Adrian Hill <adrian.hill@mailbox.org>"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
