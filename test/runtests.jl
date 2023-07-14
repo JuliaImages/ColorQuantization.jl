@@ -11,7 +11,7 @@ img = testimage("peppers")
 
 algs_deterministic = Dict(
     "UniformQuantization4" => UniformQuantization(4),
-    "KMeansQuantization8" => KMeansQuantization(8; rng=rng),
+    "KMeansQuantization8"  => KMeansQuantization(8; rng=rng),
 )
 
 @testset "ColorQuantization.jl" begin
