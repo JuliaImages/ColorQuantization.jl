@@ -1,11 +1,4 @@
-# The following code is lazily loaded from Clustering.jl using LazyModules.jl
 # Code adapted from @cormullion's ColorSchemeTools (https://github.com/JuliaGraphics/ColorSchemeTools.jl)
-
-# The following type definition is taken from from Clustering.jl for the kwarg `init`:
-const ClusteringInitType = Union{
-    Symbol,Clustering.SeedingAlgorithm,AbstractVector{<:Integer}
-}
-
 const KMEANS_DEFAULT_COLORSPACE = RGB{Float32}
 
 """
@@ -28,8 +21,7 @@ The default values are carried over from are imported from Clustering.jl.
 For more details, refer to the [documentation](https://juliastats.org/Clustering.jl/stable/)
 of Clustering.jl.
 """
-struct KMeansQuantization{T<:Colorant,I<:ClusteringInitType,R<:AbstractRNG} <:
-       AbstractColorQuantizer
+struct KMeansQuantization{T<:Colorant,I,R<:AbstractRNG} <: AbstractColorQuantizer
     ncolors::Int
     maxiter::Int
     tol::Float64
@@ -39,9 +31,9 @@ struct KMeansQuantization{T<:Colorant,I<:ClusteringInitType,R<:AbstractRNG} <:
     function KMeansQuantization(
         T::Type{<:Colorant},
         ncolors::Integer;
-        init=Clustering._kmeans_default_init,
-        maxiter=Clustering._kmeans_default_maxiter,
-        tol=Clustering._kmeans_default_tol,
+        init=_kmeans_default_init,
+        maxiter=_kmeans_default_maxiter,
+        tol=_kmeans_default_tol,
         rng=GLOBAL_RNG,
     )
         ncolors ≥ 2 ||
@@ -62,7 +54,7 @@ end
 
 function _kmeans(alg::KMeansQuantization, cs::AbstractArray{<:Colorant{T,N}}) where {T,N}
     data = reshape(channelview(cs), N, :)
-    R = Clustering.kmeans(
+    R = kmeans(
         data, alg.ncolors; maxiter=alg.maxiter, tol=alg.tol, init=alg.init, rng=alg.rng
     )
     return colorview(eltype(cs), R.centers)

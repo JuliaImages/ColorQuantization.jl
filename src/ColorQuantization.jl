@@ -4,17 +4,14 @@ using Colors
 using ImageBase: FixedPoint, floattype, FixedPointNumbers.rawtype
 using ImageBase: channelview, colorview, restrict
 using Random: AbstractRNG, GLOBAL_RNG
-using LazyModules: @lazy
-#! format: off
-@lazy import Clustering = "aaaa29a8-35af-508c-8bc3-b662a17a0fe5"
-#! format: on
+using Clustering: kmeans, _kmeans_default_init, _kmeans_default_maxiter, _kmeans_default_tol
 
 abstract type AbstractColorQuantizer end
 
 include("api.jl")
 include("utils.jl")
 include("uniform.jl")
-include("clustering.jl") # lazily loaded
+include("clustering.jl")
 
 export AbstractColorQuantizer, quantize
 export UniformQuantization, KMeansQuantization

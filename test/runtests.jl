@@ -25,11 +25,11 @@ algs_deterministic = Dict(
     @testset "Reference tests" begin
         for (name, alg) in algs_deterministic
             @testset "$name" begin
-                cs = quantize(img, alg)
+                cs = @inferred quantize(img, alg)
                 @test eltype(cs) == eltype(img)
                 @test_reference "references/$(name).txt" cs
 
-                cs = quantize(HSV{Float16}, img, alg)
+                cs = @inferred quantize(HSV{Float16}, img, alg)
                 @test eltype(cs) == HSV{Float16}
                 @test_reference "references/$(name)_HSV.txt" cs
             end
@@ -41,14 +41,14 @@ algs_deterministic = Dict(
         c3 = RGB(0.11, 0.52, 0.73)
         cs = [c1, c2, c3]
 
-        cs1 = quantize(cs, UniformQuantization(2))
+        cs1 = @inferred quantize(cs, UniformQuantization(2))
         # Centers of cubes at: 0.25, 0.75
         # c1 and c2 get quantized to the same color
         @test length(cs1) == 2
         @test cs1[1] == RGB(0.25, 0.25, 0.75)
         @test cs1[2] == RGB(0.25, 0.75, 0.75)
 
-        cs2 = quantize(cs, UniformQuantization(4))
+        cs2 = @inferred quantize(cs, UniformQuantization(4))
         # Centers of cubes at: 0.125, 0.375, 0.625, 0.875
 
         # Remember that `round` defaults to `RoundNearest`,
@@ -58,7 +58,10 @@ algs_deterministic = Dict(
         @test cs2[2] == RGB(0.375, 0.625, 0.625)
         @test cs2[3] == RGB(0.125, 0.625, 0.625)
     end
-
+    @testset "Type stability" begin
+        # @inferred UniformQuantization(4) # runtime inferrence due to {N} = 4
+        @inferred KMeansQuantization(8)
+    end
     @testset "Error messages" begin
         @test_throws ArgumentError UniformQuantization(0)
         @test_throws ArgumentError KMeansQuantization(0)
