@@ -1,9 +1,15 @@
 using ColorQuantization
 using Test
+using Aqua
 using TestImages, ReferenceTests
 using Colors
 using Random, StableRNGs
 
+# Run Aqua.jl quality assurance tests
+Aqua.test_all(ColorQuantization; ambiguities=false)
+Aqua.test_ambiguities([ColorQuantization, Core])
+
+# Run package tests
 rng = StableRNG(123)
 Random.seed!(rng, 34568)
 
