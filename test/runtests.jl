@@ -1,9 +1,9 @@
 using ColorQuantization
-using Test
-using Aqua
+using Test, Aqua
 using TestImages, ReferenceTests
-using Colors
 using Random, StableRNGs
+using Colors: RGB, HSV
+using FixedPointNumbers: N0f8
 
 # Run Aqua.jl quality assurance tests
 Aqua.test_all(ColorQuantization; ambiguities=false)
@@ -14,10 +14,12 @@ rng = StableRNG(123)
 Random.seed!(rng, 34568)
 
 img = testimage("peppers")
+img_N0f8 = convert.(RGB{N0f8}, img)
 
 algs_deterministic = Dict(
     "UniformQuantization4" => UniformQuantization(4),
-    "KMeansQuantization8"  => KMeansQuantization(8; rng=rng),
+    "KMeansQuantization8" => KMeansQuantization(8; rng=rng),
+    "KMeansQuantization8_N0f8" => KMeansQuantization(RGB{N0f8}, 8; rng=rng),
 )
 
 @testset "ColorQuantization.jl" begin
