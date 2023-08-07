@@ -1,4 +1,7 @@
 # ColorQuantization.jl
+## Version `v0.1.3`
+- ![Bugfix][badge-bugfix] Fix `KMeansQuantization` on fixed-point number color types ([#14][pr-14])
+
 ## Version `v0.1.2`
 - ![Maintenance][badge-maintenance] Make Clustering non-lazy dependency, fix type inference ([#13][pr-13])
 
@@ -22,6 +25,7 @@ Initial release:
 ![Maintenance][badge-maintenance]
 ![Documentation][badge-docs]
 -->
+[pr-14]: https://github.com/JuliaImages/ColorQuantization.jl/pull/14
 [pr-13]: https://github.com/JuliaImages/ColorQuantization.jl/pull/13
 [pr-12]: https://github.com/JuliaImages/ColorQuantization.jl/pull/12
 [pr-1]: https://github.com/JuliaImages/ColorQuantization.jl/pull/1
