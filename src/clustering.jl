@@ -54,8 +54,9 @@ end
 
 function _kmeans(alg::KMeansQuantization, cs::AbstractArray{<:Colorant{T,N}}) where {T,N}
     data = reshape(channelview(cs), N, :)
-    R = kmeans(
+    result = kmeans(
         data, alg.ncolors; maxiter=alg.maxiter, tol=alg.tol, init=alg.init, rng=alg.rng
     )
-    return colorview(eltype(cs), R.centers)
+    centers = convert.(T, result.centers)
+    return colorview(eltype(cs), centers)
 end
