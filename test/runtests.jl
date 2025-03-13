@@ -5,10 +5,6 @@ using Random, StableRNGs
 using Colors: RGB, HSV
 using FixedPointNumbers: N0f8
 
-# Run Aqua.jl quality assurance tests
-Aqua.test_all(ColorQuantization; ambiguities=false)
-Aqua.test_ambiguities([ColorQuantization, Core])
-
 # Run package tests
 rng = StableRNG(123)
 Random.seed!(rng, 34568)
@@ -23,6 +19,10 @@ algs_deterministic = Dict(
 )
 
 @testset "ColorQuantization.jl" begin
+    @testset "Aqua.jl quality assurance tests" begin
+        Aqua.test_all(ColorQuantization; ambiguities=false)
+        Aqua.test_ambiguities([ColorQuantization, Core])
+    end
     # Reference tests on deterministic methods
     @testset "Reference tests" begin
         for (name, alg) in algs_deterministic
