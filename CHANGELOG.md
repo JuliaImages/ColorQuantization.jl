@@ -1,4 +1,8 @@
 # ColorQuantization.jl
+
+## Version `v0.1.4`
+- ![Maintenance][badge-maintenance] Update Colors.jl dependency ([#15])
+
 ## Version `v0.1.3`
 - ![Bugfix][badge-bugfix] Fix `KMeansQuantization` on fixed-point number color types ([#14][pr-14])
 
@@ -25,6 +29,7 @@ Initial release:
 ![Maintenance][badge-maintenance]
 ![Documentation][badge-docs]
 -->
+[#15]: https://github.com/JuliaImages/ColorQuantization.jl/pull/15
 [pr-14]: https://github.com/JuliaImages/ColorQuantization.jl/pull/14
 [pr-13]: https://github.com/JuliaImages/ColorQuantization.jl/pull/13
 [pr-12]: https://github.com/JuliaImages/ColorQuantization.jl/pull/12
