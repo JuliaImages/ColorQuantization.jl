@@ -21,4 +21,3 @@ colors = quantize(HSV, img, UniformQuantization(4))
 typeof(colors)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-
